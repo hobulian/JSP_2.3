@@ -1,4 +1,4 @@
-<%@ page contentType = "text/html; charset=utf-8" %>
+<%@ page contentType="text/html; charset=utf-8" %>
 <%!
     public int add(int a, int b) {
         int c = a + b;
@@ -12,7 +12,7 @@
 %>
 <html>
 <head>
-<title>스크립트릿에서 선언부 사용하기</title>
+    <title>스크립트릿에서 선언부 사용하기</title>
 </head>
 <body>
 <%

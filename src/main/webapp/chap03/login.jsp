@@ -1,4 +1,4 @@
-<%@ page contentType = "text/html; charset=utf-8" %>
+<%@ page contentType="text/html; charset=utf-8" %>
 <%
     String id = request.getParameter("ID");
     if (id != null && id.equals("mad")) {
@@ -7,7 +7,7 @@
 %>
 <html>
 <head>
-<title>로그인 실패</title>
+    <title>로그인 실패</title>
 </head>
 <body>
 잘못된 아이디입니다.

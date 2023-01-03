@@ -1,4 +1,4 @@
-<%@ page contentType = "text/html; charset=euc-kr" %>
+<%@ page contentType="text/html; charset=euc-kr" %>
 <%@ page pageEncoding="utf-8" %>
 <%@ page import="java.util.Date" %>
 <%
@@ -6,7 +6,7 @@
 %>
 <html>
 <head>
-<title>현재 시간</title>
+    <title>현재 시간</title>
 </head>
 <body>
 현재 시각:

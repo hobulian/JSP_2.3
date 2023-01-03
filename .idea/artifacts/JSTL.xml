@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="JSTL">
+    <output-path>$PROJECT_DIR$/out/artifacts/JSTL</output-path>
+    <root id="archive" name="JSTL.jar">
+      <element id="module-output" name="JSP_2.3" />
+    </root>
+  </artifact>
+</component>

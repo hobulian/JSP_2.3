@@ -1,7 +1,7 @@
-<%@ page contentType = "text/html; charset=utf-8" %>
+<%@ page contentType="text/html; charset=utf-8" %>
 <html>
 <head>
-<title>클라이언트 및 서버 정보</title>
+    <title>클라이언트 및 서버 정보</title>
 </head>
 <body>
 

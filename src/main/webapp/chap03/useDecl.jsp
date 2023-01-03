@@ -1,4 +1,4 @@
-<%@ page contentType = "text/html; charset=utf-8" %>
+<%@ page contentType="text/html; charset=utf-8" %>
 <%!
     public int multiply(int a, int b) {
         int c = a * b;
@@ -7,9 +7,9 @@
 %>
 <html>
 <head>
-<title>선언부를 사용한 두 정수값의 곱</title>
+    <title>선언부를 사용한 두 정수값의 곱</title>
 </head>
 <body>
-10 x 25 = <%= multiply(10,25) %>
+10 x 25 = <%= multiply(10, 25) %>
 </body>
 </html>
