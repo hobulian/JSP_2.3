@@ -8,6 +8,7 @@
     String password = request.getParameter("password");
     String name = request.getParameter("name");
     String email = request.getParameter("email");
+    //String history = request.getParameter("history"); // long varchar 값
 
     Class.forName("com.mysql.cj.jdbc.Driver");
 
@@ -26,6 +27,9 @@
         pstmt.setString(2, password);
         pstmt.setString(3, name);
         pstmt.setString(4, email);
+        //java.io.StringReader reader = new java.io.StringReader(value);
+        //reader = new java.io.FileReader(파일경로); //파일로부터 읽어올 경우
+        //pstmt.setCharacterStream(5, reader, value.length());
 
         pstmt.executeUpdate();
     }  finally {

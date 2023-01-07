@@ -49,10 +49,11 @@
 
                     if (reader != null) {
                         StringBuilder buff = new StringBuilder();
-                        char[] ch = new char[512];
+                        char[] ch = new char[512]; // 512문자를 한 번에 읽어옴
                         int len = -1;
 
                         while ((len = reader.read(ch)) != -1) {
+                            System.out.println(len); // 몇 개의 문자를 한 번에 읽어오는가 체크
                             buff.append(ch, 0, len);
                         }
 

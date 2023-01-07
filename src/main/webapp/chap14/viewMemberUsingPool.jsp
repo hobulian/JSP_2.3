@@ -15,31 +15,16 @@ MEMBER 테이블의 내용
         <td>이메일</td>
     </tr>
     <%
-        // 1. JDBC 드라이버 로딩
-        //Class.forName("com.mysql.cj.jdbc.Driver");
-
         Connection conn = null;
         Statement stmt = null;
         ResultSet rs = null;
 
         try {
-            String jdbcDriver = "jdbc:mysql://localhost:3306/chap14?" + "useUnicode=true&characterEncoding=utf8";
-            String dbUser = "jspexam";
-            String dbPass = "jsppw";
-
+            String jdbcDriver = "jdbc:apache:commons:dbcp:chap14";
             String query = "select * from MEMBER order by MEMBERID";
-
-            //2. DB 커넥션 생성
-            conn = DriverManager.getConnection(jdbcDriver, dbUser, dbPass);
-
-            //3. Statement 생성
+            conn = DriverManager.getConnection(jdbcDriver);
             stmt = conn.createStatement();
-
-            //4. 쿼리 실행
             rs = stmt.executeQuery(query);
-
-            //5. 쿼리 결과 출력
-
             while (rs.next()) {
     %>
     <tr>
@@ -56,7 +41,6 @@ MEMBER 테이블의 내용
             System.out.println(ex.getMessage());
             ex.printStackTrace();
         } finally {
-            //6. 사용한 Statement 종료
             if (rs != null) try {
                 rs.close();
             } catch (SQLException ex) {
