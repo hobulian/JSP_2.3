@@ -5,31 +5,32 @@
     request.setCharacterEncoding("utf-8");
 
     String memberID = request.getParameter("memberID");
+    String password = request.getParameter("password");
     String name = request.getParameter("name");
-
-    int updateCount = 0;
+    String email = request.getParameter("email");
 
     Class.forName("com.mysql.cj.jdbc.Driver");
 
     Connection conn = null;
-    Statement stmt = null;
+    PreparedStatement pstmt = null;
 
     try {
         String jdbcDriver = "jdbc:mysql://localhost:3306/chap14?" + "useUnicode=true&characterEncoding=utf8";
         String dbUser = "jspexam";
         String dbPass = "jsppw";
 
-        String query = "UPDATE MEMBER SET NAME='" + name + "'" + "WHERE MEMBERID='" + memberID + "'";
-
         conn = DriverManager.getConnection(jdbcDriver, dbUser, dbPass);
-        stmt = conn.createStatement();
-        updateCount = stmt.executeUpdate(query); // executeQuery랑 헷갈리지 말 것!!
-    } catch (SQLException ex) {
-        System.out.println(ex.getMessage());
-        ex.printStackTrace();
-    } finally {
-        if (stmt != null) try {
-            stmt.close();
+        pstmt = conn.prepareStatement(
+                "insert into MEMBER values (?,?,?,?)");
+        pstmt.setString(1, memberID);
+        pstmt.setString(2, password);
+        pstmt.setString(3, name);
+        pstmt.setString(4, email);
+
+        pstmt.executeUpdate();
+    }  finally {
+        if (pstmt != null) try {
+            pstmt.close();
         } catch (SQLException ex) {
         }
         if (conn != null) try {
@@ -40,14 +41,9 @@
 %>
 <html>
 <head>
-    <title>이름 변경</title>
+    <title>삽입</title>
 </head>
 <body>
-<% if (updateCount > 0) { %>
-<%=memberID%>의 이름을 <%=name%>으로 변경
-<% } else { %>
-<%=memberID%>는 존재하지 않는 아이디입니다.
-<% } %>
-
+<%=memberID%>의 회원 정보를 레코드에 삽입했습니다.
 </body>
 </html>

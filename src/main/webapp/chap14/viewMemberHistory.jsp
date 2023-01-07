@@ -1,5 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ page import="java.sql.*" %>
+<%@ page import="java.io.Reader" %>
+<%@ page import="java.io.IOException" %>
 
 <%
     String memberID = request.getParameter("memberID");
@@ -22,7 +24,7 @@
         String dbUser = "jspexam";
         String dbPass = "jsppw";
 
-        String query = "select * from MEMBER where MEMBERID ='" + memberID + "'";
+        String query = "select * from MEMBER_HISTORY where MEMBERID ='" + memberID + "'";
 
         conn = DriverManager.getConnection(jdbcDriver, dbUser, dbPass);
         stmt = conn.createStatement();
@@ -37,26 +39,44 @@
         </td>
     </tr>
     <tr>
-        <td>암호</td>
-        <td><%= rs.getString("PASSWORD")%>
-        </td>
-    </tr>
-    <tr>
-        <td>이름</td>
-        <td><%= rs.getString("NAME")%>
-        </td>
-    </tr>
-    <tr>
-        <td>이메일</td>
-        <td><%= rs.getString("EMAIL")%>
+        <td>히스토리</td>
+        <td>
+            <%
+                String history = null;
+                Reader reader = null;
+                try {
+                    reader = rs.getCharacterStream("HISTORY");
+
+                    if (reader != null) {
+                        StringBuilder buff = new StringBuilder();
+                        char[] ch = new char[512];
+                        int len = -1;
+
+                        while ((len = reader.read(ch)) != -1) {
+                            buff.append(ch, 0, len);
+                        }
+
+                        history = buff.toString();
+                    }
+                } catch (IOException ex) {
+                    System.out.println("익셉션 발생:" + ex.getMessage());
+                } finally {
+                    if (reader != null) try {
+                        reader.close();
+                    } catch (IOException ex) {
+                    }
+                }
+            %>
+            <%=history%>
         </td>
     </tr>
 </table>
 <%
 } else {
 %>
-<%=memberID%>에 해당하는 정보가 존재하지 않습니다.
-<% }
+<%= memberID%> 회원의 히스토리가 없습니다.
+<%
+    }
 } catch (SQLException ex) {
 %>
 에러 발생: <%=ex.getMessage()%>

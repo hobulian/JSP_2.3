@@ -10,7 +10,9 @@
 MEMBER 테이블의 내용
 <table witdh="100%" border="1">
     <tr>
-        <td>이름</td><td>아이디</td><td>이메일</td>
+        <td>이름</td>
+        <td>아이디</td>
+        <td>이메일</td>
     </tr>
     <%
         // 1. JDBC 드라이버 로딩
@@ -38,25 +40,37 @@ MEMBER 테이블의 내용
 
             //5. 쿼리 결과 출력
 
-            while(rs.next()) {
+            while (rs.next()) {
     %>
-        <tr>
-            <td><%= rs.getString("NAME")%></td>
-            <td><%= rs.getString("MEMBERID")%></td>
-            <td><%= rs.getString("EMAIL")%></td>
-        </tr>
+    <tr>
+        <td><%= rs.getString("NAME")%>
+        </td>
+        <td><%= rs.getString("MEMBERID")%>
+        </td>
+        <td><%= rs.getString("EMAIL")%>
+        </td>
+    </tr>
     <%
             }
-        } catch(SQLException ex) {
+        } catch (SQLException ex) {
             System.out.println(ex.getMessage());
             ex.printStackTrace();
         } finally {
             //6. 사용한 Statement 종료
-            if(rs != null) try {rs.close(); } catch(SQLException ex) {}
-            if(stmt != null) try {stmt.close(); } catch(SQLException ex) {}
+            if (rs != null) try {
+                rs.close();
+            } catch (SQLException ex) {
+            }
+            if (stmt != null) try {
+                stmt.close();
+            } catch (SQLException ex) {
+            }
 
             //7. 커넥션 종료
-            if(conn != null) try {conn.close(); } catch(SQLException ex) {}
+            if (conn != null) try {
+                conn.close();
+            } catch (SQLException ex) {
+            }
         }
     %>
 </table>
